@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Short URL Generator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #b93075;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #b93075;
+      font-size: 32px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid #b93075;
+      border-radius: 10px;
+      outline: none;
+      transition: 0.2s ease;
+      cursor: text;
+    }
+
+    input[type="text"]:focus {
+      border-color: #8a245a;
+      box-shadow: 0 0 5px rgba(185, 48, 117, 0.6);
+    }
+
+    button {
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      background-color: #b93075;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #a12564;
+    }
+
+    .result-section {
+      margin-top: 30px;
+      word-wrap: break-word;
+    }
+
+    .result-section a {
+      color: #b93075;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 25px 20px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+    }
+
+    .analytic {
+      position: fixed;
+      top: 5px;
+      right: 5px;
+    }
+
+    .analytic a { 
+      color: aliceblue; 
+      text-decoration: none;
+      background-color: #8a245a; 
+      padding: 10px; 
+      font-size: 16px; 
+      font-weight: 400;
+      border-radius: 10px; 
+      display: inline-block; 
+      cursor: pointer; 
+    }
+
+    .analytic a:hover { 
+      background-color: aliceblue;
+      color: #8a245a;
+    }
+  </style>
+</head>
+<body>
+  <div class="analytic"><a href="/shorturl/analytic">Analytics</a></div> <!-- Button hata diya, sirf <a> rakha -->
+  <div class="container">
+    <h1>Generate Short URL</h1>
+    <form action="/shorturl" method="POST">
+      <input type="text" name="originalUrl" placeholder="Enter a long URL" required>
+      <button type="submit">Shorten URL</button>
+    </form>
+
+    <% if (shortUrl) { %>
+      <div class="result-section">
+        <h2>Your Short URL:</h2>
+        <a href="<%= shortUrl %>" target="_blank"><%= shortUrl %></a>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>

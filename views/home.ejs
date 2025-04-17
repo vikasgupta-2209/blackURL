@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>blackURL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&family=Codystar&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Exo 2', sans-serif;
+    }
+    body {
+      background: #0b0c10;
+      color: #fff;
+      line-height: 1.6;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: #1f2833;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);   
+    }
+    header h1 {
+      font-family: 'Codystar', cursive;
+      font-size: 3.3em;
+      color: #b93075;
+    }
+    .buttons{
+        display: flex;
+    }
+    .buttons button {
+        padding: 12px 25px;
+        margin-left: 15px;
+      border: none;
+      border-radius: 30px;
+      background: #b93075;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .buttons button:hover {
+      background: #f7b2b6;
+      color: #0b0c10;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      transform: translateY(-3px);
+    }
+    .buttons a {
+      color: inherit;
+      text-decoration: none;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      border-radius: 30px;
+      text-align: center;
+    }
+    .menu {
+      position: relative;
+    }
+    .menu-btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      background: #b93075;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+    .menu-panel {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 50px;
+      background: #1f2833;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      overflow: hidden;
+    }
+    .menu-panel a {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid #b93075;
+    }
+    .menu-panel a:hover {
+      background: #b93075;
+      color: #0b0c10;
+    }
+    .hero {
+      height: 100vh;
+      background: linear-gradient(120deg, #1f2833, #0b0c10);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero-content h2 {
+      font-size: 4em;
+      color: #b93075;
+      margin-bottom: 20px;
+    }
+    .hero-content p {
+      font-size: 1.5em;
+      color: #f4f3fa;
+    }
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      padding: 100px 20px;
+      min-height: 100vh;
+      background: #0b0c10;
+    }
+    .card {
+      background: #1f2833;
+      padding: 40px;
+      width: 320px;
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      background: #b678ae;
+    }
+    .card h3 {
+      color: #b93075;
+      margin-bottom: 15px;
+      font-size: 1.6em;
+    }
+    .card p {
+      color: #c5c6c7;
+    }
+    .social-button {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .social-button a {
+      background: #b93075;
+      padding: 15px 30px;
+      border-radius: 30px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .social-button a:hover {
+      background: #ff1493;
+    }
+    .quote-section {
+      background:#b93075; /*linear-gradient(135deg, #ff6f61, #ff9a8b);*/
+      height: 600px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: black;/*#fff;*/
+      padding: 0 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    .quote-section h2 {
+      font-size: 4.5em;
+      font-family:'Codystar', cursive;
+      max-width: 70%;
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
+      font-weight: 1000;
+    }
+    .reviews {
+      padding: 80px;
+      background: #1f2833;
+    }
+    .reviews h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      color: #b93075;
+      font-size: 2.5em;
+    }
+    .review-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+    .review {
+      background: #0b0c10;
+      padding: 30px;
+      width: 350px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .review p {
+      color: #c5c6c7;
+    }
+    .review strong {
+      color: #b93075;
+    }
+    .feedback-form {
+      text-align: center;
+      margin: 50px auto;
+      max-width: 600px;
+    }
+    .feedback-form input,
+    .feedback-form textarea {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+    }
+    .feedback-form button {
+      padding: 12px 25px;
+      background: #b93075;
+      border: none;
+      color: white;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+    .footer {
+      background: #1f2833;
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .footer h3 {
+      color: #b93075;
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      margin: 20px 0;
+    }
+    .footer a {
+      color: #b93075;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s;
+    }
+    .footer a:hover {
+      color: #b93075;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>blackURL</h1>
+    <div class="buttons">
+      <button><a href="/signup">Sign Up</a></button>
+      <button><a href="/login">Log In</a></button>
+      <button><a href="/auth/logout">Log Out</a></button>
+      
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Welcome to blackURL</h2>
+      <p>Shorten links, generate codes, and connect better.</p>
+    </div>
+  </section>
+
+  <section class="cards">
+    <div class="card" onclick="window.location.href='/shortURLstatic'">
+      <h3>Short URL</h3>
+      <p>Create short, shareable URLs instantly.</p>
+    </div>
+    <div class="card" onclick="window.location.href='/qrCodestatic'">
+      <h3>QR Code</h3>
+      <p>Generate QR codes for quick access.</p>
+    </div>
+    <div class="card" onclick="window.location.href='/barCodestatic'">
+      <h3>Barcode</h3>
+      <p>Make barcodes for your products.</p>
+    </div>
+  </section>
+
+  <div class="social-button">
+    <a href="https://www.instagram.com/vikas824gupta?igsh=bzkzd2VpMzhvY290">Connect With Us Socially</a>
+  </div>
+
+  <section class="quote-section">
+    <h2>"Shorten Your Path, Expand Your Reach."</h2>
+  </section>
+
+  <section class="reviews">
+    <h2>Our Happy Users</h2>
+    <div class="review-box" id="reviewBox">
+      <div class="review"><p>"This service is a lifesaver for my business!"</p><p><strong>- Vaibhav B.</strong></p></div>
+      <div class="review"><p>"QR codes made my marketing so smooth."</p><p><strong>- Advik M.</strong></p></div>
+      <div class="review"><p>"Best URL shortener I’ve used!"</p><p><strong>- Nikita M.</strong></p></div>
+    </div>
+  </section>
+
+  <div class="feedback-form">
+    <h2>Leave your feedback</h2>
+    <input type="text" id="name" placeholder="Your Name">
+    <textarea id="message" rows="4" placeholder="Your Feedback"></textarea>
+    <button onclick="submitFeedback()">Submit</button>
+  </div>
+
+  <footer class="footer">
+    <h3>blackURL</h3>
+    <p>Simplifying connections since 2025.</p>
+    <div class="footer-links">
+      <a href="/aboutUs">About Us</a> | <a href="/contactUs">Contact</a> | <a href="/privacyPolicy">Privacy Policy</a> | <a href="/termsCondition">Terms</a>
+    </div>
+    <p>© 2025 blackURL. All rights reserved.</p>
+  </footer>
+
+  <script>
+    /*function toggleMenu() {
+      const panel = document.getElementById('menuPanel');
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    }*/
+
+    function submitFeedback() {
+      const name = document.getElementById('name').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (name && message) {
+        const newReview = document.createElement('div');
+        newReview.className = 'review';
+        newReview.innerHTML = `<p>"${message}"</p><p><strong>- ${name}</strong></p>`;
+        document.getElementById('reviewBox').appendChild(newReview);
+        document.getElementById('name').value = '';
+        document.getElementById('message').value = '';
+      } else {
+        alert('Please fill both name and feedback!');
+      }
+    }
+  </script>
+</body>
+</html>

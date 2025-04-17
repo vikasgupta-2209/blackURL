@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Code Generator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #b93075;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #b93075;
+      font-size: 32px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid #b93075;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      background-color: #b93075;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #a12564;
+    }
+
+    .qr-section {
+      margin-top: 30px;
+    }
+
+    .qr-section img {
+      max-width: 100%;
+      margin-bottom: 15px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 25px 20px;
+      }
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Generate QR Code</h1>
+
+    <form action="/qr" method="POST" class="<%= qrImage ? 'hidden' : '' %>">
+      <input type="text" name="qrData" placeholder="Enter text, URL, or any data" required>
+      <button type="submit">Generate QR Code</button>
+    </form>
+
+    <% if (qrImage) { %>
+      <div class="qr-section">
+        <h2>Your QR Code:</h2>
+        <img id="qrImage" src="<%= qrImage %>" alt="Generated QR Code">
+        <a id="downloadBtn" href="<%= qrImage %>" download="qrcode.png">
+          <button type="button">Download QR Code</button>
+        </a>
+        <form action="/qrcode" method="GET" style="margin-top: 15px;">
+          <button type="submit">Generate New</button>
+        </form>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
